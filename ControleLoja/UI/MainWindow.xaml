@@ -1,0 +1,26 @@
+﻿<Window x:Class="ControleLoja.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ControleLoja"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" >
+    <Grid>
+        <DockPanel DockPanel.Dock="Bottom" Margin="0,0,0,-2" Background="#FFC7C7C7" Height="30" VerticalAlignment="Bottom" />
+        <Image x:Name="img_bdLed_red" Source="C:\Projetos Visual Studio\ControleLojaSolution\Imagens\led_vermelho.png"  HorizontalAlignment="Left" Height="12" Margin="13,0,0,6" VerticalAlignment="Bottom" Width="18" RenderTransformOrigin="1.944,0.857"/>
+        <Label Content="Acesso:" HorizontalAlignment="Left" Margin="32,0,0,0" VerticalAlignment="Bottom" Width="50" Height="26"/>
+        <Label x:Name="lb_acesso" Content="0" HorizontalAlignment="Left" Margin="76,0,0,0" RenderTransformOrigin="1.336,0.482" Height="26" VerticalAlignment="Bottom"/>
+        <Label Content="Usuário:" HorizontalAlignment="Left" Margin="96,0,0,0" VerticalAlignment="Bottom" Height="26"/>
+        <Label x:Name="lb_usuario" Content="----" HorizontalAlignment="Left" Margin="146,0,0,0" VerticalAlignment="Bottom" Height="26" Width="70"/>
+        <DataGrid x:Name="dg_resultado" d:ItemsSource="{d:SampleData ItemCount=1}" Margin="200,54,0,33" SelectionChanged="DataGrid_SelectionChanged"/>
+        <TextBox x:Name="tb_DadoBuscar" Margin="200,31,185,0" TextWrapping="Wrap" Text="" RenderTransformOrigin="0.12,0.134" TextChanged="tb_DadoBuscar_TextChanged" Height="18" VerticalAlignment="Top"/>
+        <Button x:Name="bt_Buscar" Content="Buscar" Margin="0,31,97,0" VerticalAlignment="Top" Height="18" RenderTransformOrigin="0.544,1.002" HorizontalAlignment="Right" Width="83" Click="Button_Click"/>
+        <Button x:Name="bt_NovoCadastro" Content="Novo Cadastro" Margin="0,31,9,0" VerticalAlignment="Top" Height="18" HorizontalAlignment="Right" Width="83" Click="bt_NovoCadastro_Click"/>
+
+    </Grid>
+
+
+
+
+</Window>
