@@ -1,0 +1,119 @@
+USE [ControleLoja]
+GO
+
+/****** Object:  Table [dbo].[Usuarios]    Script Date: 20/01/2024 22:54:08 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Usuarios](
+	[Ide] [uniqueidentifier] NOT NULL,
+	[Codigo] [int] NOT NULL,
+	[Nome] [varchar](50) NOT NULL,
+	[Username] [varchar](20) NOT NULL,
+	[Password] [nchar](20) NOT NULL,
+	[Acesso] [int] NOT NULL,
+	[Cargo] [varchar](20) NOT NULL,
+	[DataCadastro] [datetime] NOT NULL,
+	[Status] [bit] NOT NULL,
+ CONSTRAINT [PK_Table_1] PRIMARY KEY CLUSTERED 
+(
+	[UserIde] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+-- Produtos
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Produtos
+	(
+	Ide uniqueidentifier NOT NULL ROWGUIDCOL,
+	Codigo int NOT NULL IDENTITY (1, 1),
+	Nome nchar(50) NOT NULL,
+	Classe nchar(20) NOT NULL,
+	PrecoCusto decimal(18, 2) NOT NULL,
+	PrecoVenda decimal(18, 2) NOT NULL,
+	[DataCadastro] [datetime] NOT NULL,
+	[Status] [bit] NOT NULL,
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Produtos ADD CONSTRAINT
+	DF_Produtos_Ide DEFAULT (newid()) FOR Ide
+GO
+ALTER TABLE dbo.Produtos ADD CONSTRAINT
+	PK_Produtos PRIMARY KEY CLUSTERED 
+	(
+	Ide
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Produtos SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+-- ProdutoClasse
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.ProdutoClasse
+	(
+	Ide uniqueidentifier NOT NULL ROWGUIDCOL,
+	Codigo int NOT NULL IDENTITY (1, 1),
+	Nome nchar(30) NOT NULL,
+	Status bit NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.ProdutoClasse ADD CONSTRAINT
+	DF_ProdutoClasse_Ide DEFAULT (newid()) FOR Ide
+GO
+ALTER TABLE dbo.ProdutoClasse ADD CONSTRAINT
+	PK_ProdutoClasse PRIMARY KEY CLUSTERED 
+	(
+	Ide
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.ProdutoClasse SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+-- Insert Classe 1 Vazia.
+
+INSERT INTO [dbo].[ProdutoClasse]
+           ([Ide]
+           ,[Nome]
+           ,[Status])
+     VALUES
+           (NEWID(),
+            '',
+            0) 
+GO
+
+
+
+

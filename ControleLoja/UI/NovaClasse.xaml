@@ -1,0 +1,18 @@
+﻿<Window x:Class="ControleLoja.UI.NovaClasse"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ControleLoja.UI"
+        mc:Ignorable="d"
+        Title="NovaClasse" Height="170" Width="370" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Codigo:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_codigo" HorizontalAlignment="Left" Margin="66,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50" TextChanged="tb_codigo_TextChanged"/>
+        <Label Content="Nome:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_nome" Margin="66,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="274"/>
+        <Button x:Name="bt_cadastrar" Content="Cadastrar" HorizontalAlignment="Left" Margin="286,67,0,0" Click="bt_cadastrar_Click" Height="20" VerticalAlignment="Top"/>
+        <Button x:Name="bt_cancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="232,67,0,0" VerticalAlignment="Top" Click="bt_cancelar_Click"/>
+
+    </Grid>
+</Window>

@@ -27,8 +27,7 @@ namespace ControleLoja
         public MainWindow()
         {
             InitializeComponent();
-            F_Login f_Login = new F_Login(this);
-            f_Login.ShowDialog();
+  
         }
 
         public void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace ControleLoja.Entity
 {
-    public class Produto
+    public class ProdutoClasse
     {
-        public Guid Ide {  get; set; }
-        public int Codigo { get; set; }
+
+        public Guid Ide { get; set; }
+        public int Codigo {  get; set; }
         public string Nome { get; set; } = string.Empty;
-        public string Classe { get; set; } = string.Empty;
-        public decimal PrecoCusto { get; set; }
-        public decimal PrecoVenda { get; set; }
         public bool Status { get; set; }
 
     }

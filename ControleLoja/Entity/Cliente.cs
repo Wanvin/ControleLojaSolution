@@ -9,7 +9,7 @@ namespace ControleLoja.Entity
 {
     public class Cliente
     {
-        public Guid ClienteIde { get; set; }
+        public Guid Ide { get; set; }
         public int Codigo { get; set; }
         public string Nome { get; set; } = string.Empty; 
         public string TelefoneContato { get; set; } = string.Empty;

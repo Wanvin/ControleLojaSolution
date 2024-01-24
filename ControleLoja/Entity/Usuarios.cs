@@ -9,7 +9,7 @@ namespace ControleLoja.ConexaoBanco.Entity
     public class Usuarios
     {
 
-        public Guid UserIde { get; set; }
+        public Guid Ide { get; set; }
         public int Codigo { get; set; }
         public string Nome { get; set; } = string.Empty;
         public string Username { get; set; } = string.Empty;

@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ControleLoja"
         mc:Ignorable="d"
-        Title="NovoProduto" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
-        
+        Title="NovoProduto" Height="250" Width="640" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,-6">
+        <Label Content="Codigo:" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.274,0.348"/>
+        <TextBox x:Name="tb_codigo" HorizontalAlignment="Left" Margin="59,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="50" TextChanged="tb_codigo_TextChanged"/>
+        <Label Content="Nome:" HorizontalAlignment="Left" Margin="110,30,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_Nome" HorizontalAlignment="Left" Margin="160,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="454"/>
+        <Label Content="Classe:" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cb_classe" HorizontalAlignment="Left" Margin="61,63,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="cb_classe_SelectionChanged" />
+
+        <Label Content="Preço de Custo:" HorizontalAlignment="Left" Margin="266,61,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_PrecoCusto" HorizontalAlignment="Left" Margin="364,65,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Preço de Venda:" HorizontalAlignment="Left" Margin="444,63,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.246,0.656"/>
+        <TextBox x:Name="tb_PrecoVenda" HorizontalAlignment="Left" Margin="539,65,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="bt_Cadastrar" Content="Cadastrar" HorizontalAlignment="Left" Margin="560,100,0,0" VerticalAlignment="Top" Click="bt_Cadastrar_Click"/>
+        <Button x:Name="bt_Cancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="506,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.168,1.255" Click="bt_Cancelar_Click"/>
+        <Button x:Name="bt_NovaClasse" Content="Nova Classe" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Click="bt_NovaClasse_Click"/>
     </Grid>
 </Window>
