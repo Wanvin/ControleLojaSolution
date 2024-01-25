@@ -72,14 +72,12 @@ namespace ControleLoja.DAO
 
         }
 
-
         public int NovoCodigoProduto()
         {
 
             SqlDataAdapter sqa = new SqlDataAdapter(cmd);
 
             cmd.CommandText = "Select max(Codigo) from Produtos ";
-
             // Também consigo incrementar pela querySQl "Select (max(p.codigo) +1) from Produtos p"
 
             try
