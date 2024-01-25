@@ -70,8 +70,8 @@ namespace ControleLoja
         public void bt_NovoCadastro_Click(object sender, RoutedEventArgs e)
         {
             // Chamar tela de Cadastro
-            NovoProduto novoProduto = new NovoProduto();
-            novoProduto.Show();
+            NovoProduto novoProdutoUI = new NovoProduto();
+            novoProdutoUI.Show();
 
 
         }

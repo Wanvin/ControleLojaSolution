@@ -40,8 +40,7 @@ namespace ControleLoja.DAO
             try
             {
                 cmd.Connection = conexaoBanco.Conectar();
-                cmd.ExecuteNonQuery();
-                conexaoBanco.Desconectar();
+                cmd.ExecuteNonQuery();               
                 msg = "Produto Cadastrado!";
                 return true;
             }
@@ -50,9 +49,9 @@ namespace ControleLoja.DAO
                 msg = "Erro ao cadastrar Produto!";
                 throw e;
             }
+            finally { conexaoBanco.Desconectar(); }
 
-
-        }
+            }
 
 
         public DataTable SelectTeste()
@@ -66,15 +65,14 @@ namespace ControleLoja.DAO
             {
                 cmd.Connection = conexaoBanco.Conectar();
                 DataTable Usuarios = new DataTable();
-                sqa.Fill(Usuarios);
-                conexaoBanco.Desconectar();
+                sqa.Fill(Usuarios);               
                 return Usuarios;
             }
             catch (Exception e)
             {
                 throw e;
             }
-
+            finally { conexaoBanco.Desconectar(); }
 
         }
 
@@ -93,14 +91,14 @@ namespace ControleLoja.DAO
             {
                 cmd.Connection = conexaoBanco.Conectar();
                 int mCodigo = Convert.ToInt32(cmd.ExecuteScalar());
-                int nCodigo = mCodigo + 1;
-                conexaoBanco.Desconectar();
+                int nCodigo = mCodigo + 1;               
                 return nCodigo;
             }
             catch (Exception e)
             {
                 throw e;
             }
+            finally { conexaoBanco.Desconectar(); }
         }
 
         public int NovoCodigoClasse()
@@ -116,14 +114,14 @@ namespace ControleLoja.DAO
                 if (nCodigo.ToString() == "" || nCodigo.ToString() == null)
                 {
                     nCodigo = 1;
-                }
-                conexaoBanco.Desconectar();
+                }               
                 return nCodigo;
             }
             catch (Exception e)
             {
                 throw e;
             }
+            finally { conexaoBanco.Desconectar(); }
 
         }
 
@@ -139,8 +137,7 @@ namespace ControleLoja.DAO
             try
             {
                 cmd.Connection = conexaoBanco.Conectar();
-                cmd.ExecuteNonQuery();
-                conexaoBanco.Desconectar();
+                cmd.ExecuteNonQuery();               
                 msg = "Classe Cadastrada!";
                 return true;
             }
@@ -148,6 +145,7 @@ namespace ControleLoja.DAO
             {               
                 throw e;
             }
+            finally { conexaoBanco.Desconectar(); }
 
         }
 
