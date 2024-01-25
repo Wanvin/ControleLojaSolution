@@ -16,16 +16,12 @@ namespace ControleLoja.DAO
     public class Crud
     {
 
-
         ConexaoBanco.ConexaoBanco conexaoBanco = new ConexaoBanco.ConexaoBanco();
         SqlCommand cmd = new SqlCommand();
         string msg = string.Empty;
 
         public bool CadastrarProduto(string Nome, string Classe, decimal PrecoCusto, decimal PrecoVenda, DateTime DataCadastro, bool Status)
         {
-
-
-
 
             cmd.CommandText = "insert into Produtos(Nome, Classe, PrecoCusto, PrecoVenda, DataCadastro, Status)" +
                               "values(@Nome, @Classe, @PrecoCusto, @PrecoVenda, @DataCadastro, @Status)";
@@ -85,7 +81,6 @@ namespace ControleLoja.DAO
             cmd.CommandText = "Select max(Codigo) from Produtos ";
 
             // Também consigo incrementar pela querySQl "Select (max(p.codigo) +1) from Produtos p"
-
 
             try
             {
