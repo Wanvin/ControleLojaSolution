@@ -57,7 +57,19 @@ namespace ControleLoja
             try
             {
                 crud.CadastrarProduto(tb_Nome.Text, cb_classe.Text, produto.PrecoCusto, produto.PrecoVenda, DateTime.Now, produto.Status);
-                MessageBox.Show("Produto Cadastrado ");
+                var dialogResult =  MessageBox.Show("Produto Cadastrado, deseja cadastrar novo ?", "Produto Cadastrado", MessageBoxButton.YesNo);
+                if (dialogResult == MessageBoxResult.Yes)
+                {
+             
+                    // Limpar itens da janela ao clicar Sim e atualizar código do Novo Produto
+                                   
+                } 
+                else if (dialogResult == MessageBoxResult.No)
+                {
+                    this.Close();
+                    NovoProduto.GetWindow(this).Close();                   
+                    
+                }
             }
             catch (Exception)
             {
