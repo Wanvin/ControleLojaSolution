@@ -40,6 +40,17 @@ namespace ControleLoja
 
         }
 
+        public void LimparCampos()
+        {
+            int CodigoProduto = crud.NovoCodigoProduto();
+            tb_codigo.Text = CodigoProduto.ToString();
+            PreencherComboBox();
+            tb_Nome.Text = "";
+            tb_PrecoCusto.Text = "";
+            tb_PrecoVenda.Text = "";
+            produto.Nome = string.Empty;
+        }
+
         public void tb_codigo_TextChanged(object sender, TextChangedEventArgs e)
         {
          
@@ -49,6 +60,7 @@ namespace ControleLoja
         {
 
             produto.Codigo = crud.NovoCodigoProduto();
+            produto.Nome = tb_Nome.Text;
             produto.Classe = cb_classe.Text;
             produto.PrecoCusto = decimal.Parse(tb_PrecoCusto.Text);
             produto.PrecoVenda= decimal.Parse(tb_PrecoVenda.Text);
@@ -56,19 +68,22 @@ namespace ControleLoja
 
             try
             {
-                crud.CadastrarProduto(tb_Nome.Text, cb_classe.Text, produto.PrecoCusto, produto.PrecoVenda, DateTime.Now, produto.Status);
+                crud.CadastrarProduto(produto.Nome, produto.Classe, produto.PrecoCusto, produto.PrecoVenda, DateTime.Now, produto.Status);
                 var dialogResult =  MessageBox.Show("Produto Cadastrado, deseja cadastrar novo ?", "Produto Cadastrado", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes)
                 {
-             
+
                     // Limpar itens da janela ao clicar Sim e atualizar código do Novo Produto
-                                   
+                                        
+                    LimparCampos();
+                    
+
                 } 
                 else if (dialogResult == MessageBoxResult.No)
                 {
                     this.Close();
-                    NovoProduto.GetWindow(this).Close();                   
-                    
+                    NovoProduto.GetWindow(this).Close();
+
                 }
             }
             catch (Exception)

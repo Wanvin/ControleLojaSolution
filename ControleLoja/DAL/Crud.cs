@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ControleLoja.ConexaoBanco.Entity;
+using System.Windows;
+using static Azure.Core.HttpHeader;
 
 
 
@@ -36,7 +38,8 @@ namespace ControleLoja.DAO
             try
             {
                 cmd.Connection = conexaoBanco.Conectar();
-                cmd.ExecuteNonQuery();               
+                cmd.ExecuteNonQuery();
+                cmd.Parameters.Clear();
                 msg = "Produto Cadastrado!";
                 return true;
             }
@@ -47,9 +50,33 @@ namespace ControleLoja.DAO
             }
             finally { conexaoBanco.Desconectar(); }
 
+        }
+
+        /*
+        public List<Usuarios> SelectData()
+        {
+            List<Usuarios> usuarios = new List<Usuarios>();
+            cmd.CommandText = "Select * from Usuarios";
+
+            try
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                    
+                        //Concluir e testar  
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
             }
 
-
+            return usuarios;
+        }
+        */
         public DataTable SelectTeste()
         {
 
@@ -66,7 +93,10 @@ namespace ControleLoja.DAO
             }
             catch (Exception e)
             {
-                throw e;
+                // Enviar a exception como mensagem ou definir mensagem padrão, como por exemplo: Erro ao selecionar usuario.
+                msg = e.Message;
+                MessageBox.Show(msg);
+                throw;
             }
             finally { conexaoBanco.Desconectar(); }
 
@@ -118,21 +148,22 @@ namespace ControleLoja.DAO
 
         }
 
-        public bool CadastrarClasse(string Nome, bool Status)
+        public bool CadastrarClasse(string NomeClasse, bool Status)
         {
 
             cmd.CommandText = "insert into ProdutoClasse(Nome, Status)" +
                               "values(@Nome, @Status)";
 
-            cmd.Parameters.AddWithValue("@Nome", Nome);
+            cmd.Parameters.AddWithValue("@Nome", NomeClasse);
             cmd.Parameters.AddWithValue("Status", Status);
 
             try
             {
                 cmd.Connection = conexaoBanco.Conectar();
-                cmd.ExecuteNonQuery();               
+                cmd.ExecuteNonQuery();
+                cmd.Parameters.Clear();
                 msg = "Classe Cadastrada!";
-                return true;
+                return true;                
             }
             catch (Exception e)
             {               
@@ -150,8 +181,7 @@ namespace ControleLoja.DAO
 
             try
             {
-                cmd.Connection = conexaoBanco.Conectar();
-               
+                cmd.Connection = conexaoBanco.Conectar();               
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                     while (reader.Read()) 

@@ -41,6 +41,7 @@ namespace ControleLoja.UI
             Classe.Codigo = int.Parse(tb_codigo.Text); 
             Classe.Nome = tb_nome.Text;
             Classe.Status = false;
+
             if (tb_nome.Text == "")
             {
                 System.Windows.MessageBox.Show("Não é possível cadastrar Classe sem um Nome.");
@@ -53,6 +54,7 @@ namespace ControleLoja.UI
                 {
                     crud.CadastrarClasse(Classe.Nome, Classe.Status);
                     msg = "Classe Cadastrada!";
+                    this.Close();
 
                 }
                 catch (Exception)
