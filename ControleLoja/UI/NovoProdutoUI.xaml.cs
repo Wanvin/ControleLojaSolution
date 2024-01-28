@@ -71,19 +71,13 @@ namespace ControleLoja
                 crud.CadastrarProduto(produto.Nome, produto.Classe, produto.PrecoCusto, produto.PrecoVenda, DateTime.Now, produto.Status);
                 var dialogResult =  MessageBox.Show("Produto Cadastrado, deseja cadastrar novo ?", "Produto Cadastrado", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes)
-                {
-
-                    // Limpar itens da janela ao clicar Sim e atualizar código do Novo Produto
-                                        
-                    LimparCampos();
-                    
-
+                {                                                          
+                    LimparCampos();                  
                 } 
                 else if (dialogResult == MessageBoxResult.No)
                 {
                     this.Close();
                     NovoProduto.GetWindow(this).Close();
-
                 }
             }
             catch (Exception)
@@ -91,13 +85,7 @@ namespace ControleLoja
 
                 throw;
             }
-            
-
-             /*
-             * DESAFIO FUTURO -- CRIAR UM MESSAGE BOX PERSONALIZADO DE SIM E NAO. 
-             * Para quando cadastrar o Produto perguntar se quer cadastrar um novo produto. Se sim, limpa as text box e atualiza o codigo, se não close volta para MainWindow
-             */
-
+          
         }
 
         private void PreencherComboBox()

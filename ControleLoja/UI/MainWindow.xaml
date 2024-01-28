@@ -13,7 +13,16 @@
         <Label x:Name="lb_acesso" Content="0" HorizontalAlignment="Left" Margin="76,0,0,0" RenderTransformOrigin="1.336,0.482" Height="26" VerticalAlignment="Bottom"/>
         <Label Content="Usuário:" HorizontalAlignment="Left" Margin="96,0,0,0" VerticalAlignment="Bottom" Height="26"/>
         <Label x:Name="lb_usuario" Content="----" HorizontalAlignment="Left" Margin="146,0,0,0" VerticalAlignment="Bottom" Height="26" Width="70"/>
-        <DataGrid x:Name="dg_resultado" d:ItemsSource="{d:SampleData ItemCount=1}" Margin="200,54,0,33" SelectionChanged="DataGrid_SelectionChanged"/>
+        <DataGrid x:Name="dg_resultado" AutoGenerateColumns="False" Margin="200,54,0,33" SelectionChanged="DataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo}"/>
+                <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="250"/>
+                <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="150"/>
+                <DataGridTextColumn Header="Acesso" Binding="{Binding Acesso}"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
         <TextBox x:Name="tb_DadoBuscar" Margin="200,31,185,0" TextWrapping="Wrap" Text="" RenderTransformOrigin="0.12,0.134" TextChanged="tb_DadoBuscar_TextChanged" Height="18" VerticalAlignment="Top"/>
         <Button x:Name="bt_Buscar" Content="Buscar" Margin="0,31,97,0" VerticalAlignment="Top" Height="18" RenderTransformOrigin="0.544,1.002" HorizontalAlignment="Right" Width="83" Click="Button_Click"/>
         <Button x:Name="bt_NovoCadastro" Content="Novo Cadastro" Margin="0,31,9,0" VerticalAlignment="Top" Height="18" HorizontalAlignment="Right" Width="83" Click="bt_NovoCadastro_Click"/>

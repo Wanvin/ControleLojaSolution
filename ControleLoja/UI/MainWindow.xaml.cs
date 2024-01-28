@@ -1,4 +1,5 @@
 ﻿
+using ControleLoja.ConexaoBanco.Entity;
 using ControleLoja.DAO;
 using System.Data;
 using System.Text;
@@ -44,12 +45,20 @@ namespace ControleLoja
         {
             
             Crud crud = new Crud();
-            DataTable resultado = crud.SelectTeste();
+
+            List<Usuarios> selects = crud.SelectData();
+
+            foreach (Usuarios usuario in selects)
+            {
+                dg_resultado.ItemsSource = selects;
+            }
+
+            //DataTable resultado = crud.SelectTeste();
 
             /* Filtro pela exibicao da busca
                string filtro = "Status = 0";
                resultado.DefaultView.RowFilter = filtro; */
-
+            /*
 
             dg_resultado.AutoGenerateColumns = false; // Desativa a geração automática de colunas
 
@@ -63,6 +72,9 @@ namespace ControleLoja
             dg_resultado.Columns.Add(new DataGridTextColumn { Header = "Status", Binding = new Binding("Status") });
 
             dg_resultado.ItemsSource = resultado.DefaultView; // Grid recebe resultado
+            */
+
+
 
 
         }

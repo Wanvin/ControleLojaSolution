@@ -22,7 +22,7 @@ namespace ControleLoja.DAO
         SqlCommand cmd = new SqlCommand();
         string msg = string.Empty;
 
-        public bool CadastrarProduto(string Nome, string Classe, decimal PrecoCusto, decimal PrecoVenda, DateTime DataCadastro, bool Status)
+        public string CadastrarProduto(string Nome, string Classe, decimal PrecoCusto, decimal PrecoVenda, DateTime DataCadastro, bool Status)
         {
 
             cmd.CommandText = "insert into Produtos(Nome, Classe, PrecoCusto, PrecoVenda, DataCadastro, Status)" +
@@ -41,7 +41,7 @@ namespace ControleLoja.DAO
                 cmd.ExecuteNonQuery();
                 cmd.Parameters.Clear();
                 msg = "Produto Cadastrado!";
-                return true;
+                return msg;
             }
             catch (Exception e)
             {
@@ -52,7 +52,7 @@ namespace ControleLoja.DAO
 
         }
 
-        /*
+        
         public List<Usuarios> SelectData()
         {
             List<Usuarios> usuarios = new List<Usuarios>();
@@ -60,12 +60,25 @@ namespace ControleLoja.DAO
 
             try
             {
+                cmd.Connection = conexaoBanco.Conectar();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                    
-                        //Concluir e testar  
+                        Usuarios usuario = new Usuarios
+                        {
+                            Codigo = Convert.ToInt32(reader["Codigo"]),
+                            Nome = reader["Nome"].ToString(),
+                            Username = reader["Username"].ToString(),
+                            Password = reader["Password"].ToString(),
+                            Acesso = Convert.ToInt32(reader["Acesso"]),
+                            //Cargo = Convert.ToString(reader["Cargo"]),                            
+                            DataCadastro = Convert.ToDateTime(reader["DataCadastro"]),
+                            Status = Convert.ToBoolean(reader["Status"])
+                        };
+
+                        usuarios.Add(usuario);
+
                     }
                 }
             }
@@ -73,10 +86,10 @@ namespace ControleLoja.DAO
             {
                 throw;
             }
-
+            finally { conexaoBanco.Desconectar(); }
             return usuarios;
         }
-        */
+        
         public DataTable SelectTeste()
         {
 
