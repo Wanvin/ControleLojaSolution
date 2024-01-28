@@ -13,13 +13,13 @@
         <Label x:Name="lb_acesso" Content="0" HorizontalAlignment="Left" Margin="76,0,0,0" RenderTransformOrigin="1.336,0.482" Height="26" VerticalAlignment="Bottom"/>
         <Label Content="Usuário:" HorizontalAlignment="Left" Margin="96,0,0,0" VerticalAlignment="Bottom" Height="26"/>
         <Label x:Name="lb_usuario" Content="----" HorizontalAlignment="Left" Margin="146,0,0,0" VerticalAlignment="Bottom" Height="26" Width="70"/>
-        <DataGrid x:Name="dg_resultado" AutoGenerateColumns="False" Margin="200,54,0,33" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid x:Name="dg_resultado" AutoGenerateColumns="False" Margin="200,54,10,33" SelectionChanged="DataGrid_SelectionChanged" Width="590">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo}"/>
                 <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="250"/>
-                <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="150"/>
-                <DataGridTextColumn Header="Acesso" Binding="{Binding Acesso}"/>
-
+                <DataGridTextColumn Header="Classe" Binding="{Binding Classe}" Width="100"/>                
+                <DataGridTextColumn Header="PrecoCusto" Binding="{Binding PrecoCusto}" Width="100"/>
+                <DataGridTextColumn Header="PrecoVenda" Binding="{Binding PrecoVenda}"/>             
             </DataGrid.Columns>
 
         </DataGrid>

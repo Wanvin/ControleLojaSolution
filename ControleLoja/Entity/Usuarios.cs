@@ -15,7 +15,7 @@ namespace ControleLoja.ConexaoBanco.Entity
         public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public int Acesso { get; set; }
-        public int Cargo { get; set; }
+        public string Cargo { get; set; } = string.Empty;
         public DateTime DataCadastro { get; set; }
         public bool Status { get; set; }
 

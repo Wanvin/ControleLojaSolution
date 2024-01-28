@@ -10,6 +10,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ControleLoja.ConexaoBanco.Entity;
 using System.Windows;
 using static Azure.Core.HttpHeader;
+using Microsoft.VisualBasic.ApplicationServices;
+using ControleLoja.Entity;
 
 
 
@@ -44,9 +46,10 @@ namespace ControleLoja.DAO
                 return msg;
             }
             catch (Exception e)
-            {
-                msg = "Erro ao cadastrar Produto!";
-                throw e;
+            {                
+                msg = e.Message;
+                MessageBox.Show(msg);
+                throw;
             }
             finally { conexaoBanco.Desconectar(); }
 
@@ -72,7 +75,7 @@ namespace ControleLoja.DAO
                             Username = reader["Username"].ToString(),
                             Password = reader["Password"].ToString(),
                             Acesso = Convert.ToInt32(reader["Acesso"]),
-                            //Cargo = Convert.ToString(reader["Cargo"]),                            
+                            Cargo = Convert.ToString(reader["Cargo"]),                            
                             DataCadastro = Convert.ToDateTime(reader["DataCadastro"]),
                             Status = Convert.ToBoolean(reader["Status"])
                         };
@@ -89,7 +92,7 @@ namespace ControleLoja.DAO
             finally { conexaoBanco.Desconectar(); }
             return usuarios;
         }
-        
+        /*
         public DataTable SelectTeste()
         {
 
@@ -114,7 +117,7 @@ namespace ControleLoja.DAO
             finally { conexaoBanco.Desconectar(); }
 
         }
-
+        */
         public int NovoCodigoProduto()
         {
 
@@ -161,7 +164,7 @@ namespace ControleLoja.DAO
 
         }
 
-        public bool CadastrarClasse(string NomeClasse, bool Status)
+        public string CadastrarClasse(string NomeClasse, bool Status)
         {
 
             cmd.CommandText = "insert into ProdutoClasse(Nome, Status)" +
@@ -176,11 +179,13 @@ namespace ControleLoja.DAO
                 cmd.ExecuteNonQuery();
                 cmd.Parameters.Clear();
                 msg = "Classe Cadastrada!";
-                return true;                
+                return msg;                
             }
             catch (Exception e)
             {               
-                throw e;
+                msg = e.Message;
+                MessageBox.Show(msg);
+                throw;
             }
             finally { conexaoBanco.Desconectar(); }
 
@@ -203,16 +208,49 @@ namespace ControleLoja.DAO
                         Nomes.Add(Nome);                            
                     }               
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
 
             finally { conexaoBanco.Desconectar(); }
 
             return Nomes;
-
                 
+        }
+
+        public List<Produto> SelectProduto() 
+        {
+            List<Produto> listProdutos = new List<Produto>();
+            cmd.CommandText = "Select * from Produtos where Status = 0 order by Codigo;";
+
+            try
+            {
+                cmd.Connection = conexaoBanco.Conectar();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                    while (reader.Read())
+                    {
+                        Produto produto = new Produto 
+                        {
+                          Codigo = Convert.ToInt32(reader["Codigo"]),
+                          Nome = Convert.ToString(reader["Nome"]),
+                          Classe = Convert.ToString(reader["Classe"]),
+                          PrecoCusto = Convert.ToDecimal(reader["PrecoCusto"]),
+                          PrecoVenda = Convert.ToDecimal(reader["PrecoCusto"]),
+
+                        };
+                        listProdutos.Add(produto);                      
+                    }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { conexaoBanco.Desconectar(); }
+            return listProdutos;
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿
 using ControleLoja.ConexaoBanco.Entity;
 using ControleLoja.DAO;
+using ControleLoja.Entity;
 using System.Data;
 using System.Text;
 using System.Windows;
@@ -46,12 +47,24 @@ namespace ControleLoja
             
             Crud crud = new Crud();
 
+            List<Produto> produtos = crud.SelectProduto();
+
+            foreach (Produto produto in produtos) 
+            {
+                dg_resultado.Items.Add(produto);
+            }
+
+            /*              
+             * modo2
+             
             List<Usuarios> selects = crud.SelectData();
 
             foreach (Usuarios usuario in selects)
             {
                 dg_resultado.ItemsSource = selects;
             }
+
+            * modo1
 
             //DataTable resultado = crud.SelectTeste();
 
